@@ -6,7 +6,7 @@ function getHumanChoice() {
 }
 
 function getComputerChoice() {
-    const choices = ["Rock", "Paper", "Scissors"]
+    const choices = ["Rock", "Paper", "Scissors"];
     const computerSelection = Math.floor(Math.random() * 3);
     return choices[computerSelection];
 }
@@ -49,7 +49,7 @@ function playGame() {
             alert(`Draw! ${humanChoice} does not beat ${computerChoice}`);
         } else {
             alert(`You lose this round! ${computerChoice} beats ${humanChoice}`);
-            computerScore++
+            computerScore++;
         }
     }
 }
