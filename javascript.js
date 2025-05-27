@@ -25,9 +25,9 @@ function playGame() {
         //capitalize humanChoice if it is not already capitalized, as it will be used for formatting
         humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
     
-        const humanWonRound = (humanChoice === "Rock" && computerChoice === "Scissors")
-                           || (humanChoice === "Paper" && computerChoice === "Rock")
-                           || (humanChoice === "Scissors" && computerChoice === "Paper");
+        const humanWonRound = (humanChoice === "Rock" && computerChoice === "Scissors") ||
+                              (humanChoice === "Paper" && computerChoice === "Rock") ||
+                              (humanChoice === "Scissors" && computerChoice === "Paper");
     
         if(humanWonRound) {
             alert(`You win this round! ${humanChoice} beats ${computerChoice}`);
