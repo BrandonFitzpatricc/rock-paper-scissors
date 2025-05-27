@@ -21,6 +21,19 @@ function playGame() {
         playRound(humanChoice, computerChoice);
     }
 
+    let resultMessage = "Your Score: " + humanScore + 
+                        "\nOpponent Score: " + computerScore;
+
+    if(humanScore > computerScore) {
+        resultMessage += "\nYou won the game, congratulations!";
+    } else if(humanScore === computerScore) {
+        resultMessage += "\nThe game was a draw!";
+    } else {
+        resultMessage += "\nYou lost the game, better luck next time!";
+    }
+
+    alert(resultMessage);
+
     function playRound(humanChoice, computerChoice) {
         //capitalize humanChoice if it is not already capitalized, as it will be used for formatting
         humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
