@@ -35,7 +35,7 @@ function playGame() {
     alert(resultMessage);
 
     function playRound(humanChoice, computerChoice) {
-        //capitalize humanChoice if it is not already capitalized, as it will be used for formatting
+        // Capitalizes humanChoice if it is not already capitalized, as it will be used for displaying results.
         humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
     
         const humanWonRound = (humanChoice === "Rock" && computerChoice === "Scissors") ||
