@@ -7,8 +7,8 @@ function getHumanChoice() {
 
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissors"];
-    const computerSelection = Math.floor(Math.random() * 3);
-    return choices[computerSelection];
+    const computerChoice = Math.floor(Math.random() * 3);
+    return choices[computerChoice];
 }
 
 function playGame() {
