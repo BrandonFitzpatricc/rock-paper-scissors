@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="javascript.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
+    <div class="main-container">
+        <div class="title">Rock Paper Scissors</div>
+
+        <div class="player-and-opponent-container">
+            <div class="player">
+                <div class="player-label">You</div>
+                <div id="player-selection-icon" class="icon"><img></div>
+                <div id="player-score">0 points</div>
+            </div>
+
+            <img id="round-result-symbol">
+
+            <div class="opponent">
+                <div class="opponent-label">Opponent</div>
+                <div id="opponent-selection-icon" class="icon"><img></div>
+                <div id="opponent-score">0 points</div>
+            </div>
+        </div>
+
+        <div id="game-text">First player to 5 points wins!</div>
+
+        <ul id="buttons">
+            <li><button id="rock"><img src="./icons/rock.png"></button></li>
+            <li><button id="paper"><img src="./icons/paper.png"></button></li>
+            <li><button id="scissors"><img src="./icons/scissors.png"></button></li>
+        </ul>
+    </div>
 </body>
 </html>
