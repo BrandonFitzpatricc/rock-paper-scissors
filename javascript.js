@@ -1,55 +1,59 @@
-// playGame();
+let playerScore = 0;
+let opponentScore = 0;
 
-function getHumanChoice() {
-    const humanChoice = prompt("Rock, Paper, or Scissors?");
-    return humanChoice;
+const buttons = document.querySelector("#buttons");
+buttons.addEventListener("click", (event) => {
+    const playerSelection = event.target.id;
+    const opponentSelection = getOpponentSelection();
+    setIcons(playerSelection, opponentSelection);
+    checkResults(playerSelection, opponentSelection);
+})
+
+function getOpponentSelection() {
+    const selections = ["rock", "paper", "scissors"];
+    const opponentSelection = Math.floor(Math.random() * 3);
+    return selections[opponentSelection];
 }
 
-function getComputerChoice() {
-    const choices = ["Rock", "Paper", "Scissors"];
-    const computerChoice = Math.floor(Math.random() * 3);
-    return choices[computerChoice];
+function setIcons(playerSelection, opponentSelection) {
+    const playerSelectionIcon = document.querySelector("#player-selection").firstChild;
+    playerSelectionIcon.setAttribute("src", `./icons/${playerSelection}.png`);
+
+    const opponentSelectionIcon = document.querySelector("#opponent-selection").firstChild;
+    opponentSelectionIcon.setAttribute("src", `./icons/${opponentSelection}.png`);
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    
-    for (let i = 0; i < 5; i++) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
+function checkResults(playerSelection, opponentSelection) {
+    const roundResultSymbol = document.querySelector("#round-result-symbol");
+    const gameText = document.querySelector("#game-text");
 
-    let resultMessage = "Your Score: " + humanScore + 
-                        "\nOpponent Score: " + computerScore;
+    const playerWonRound = (playerSelection === "rock" && opponentSelection === "scissors") ||
+                           (playerSelection === "paper" && opponentSelection === "rock") ||
+                           (playerSelection === "scissors" && opponentSelection === "paper");
 
-    if(humanScore > computerScore) {
-        resultMessage += "\nYou won the game, congratulations!";
-    } else if(humanScore === computerScore) {
-        resultMessage += "\nThe game was a draw!";
+    if(playerWonRound) {
+        roundResultSymbol.setAttribute("src", "./icons/player-won.png");
+        gameText.textContent = "You win this round!"
+        
+        const playerScoreText = document.querySelector("#player-score");
+        playerScoreText.textContent = `${++playerScore} points`
+    } else if(playerSelection === opponentSelection) {
+        roundResultSymbol.setAttribute("src", "./icons/draw.png");
+        gameText.textContent = "Draw!"
     } else {
-        resultMessage += "\nYou lost the game, better luck next time!";
+        roundResultSymbol.setAttribute("src", "./icons/player-lost.png");
+        gameText.textContent = "You lose this round!"
+        
+        const opponentScoreText = document.querySelector("#opponent-score");
+        opponentScoreText.textContent = `${++opponentScore} points`
     }
 
-    alert(resultMessage);
-
-    function playRound(humanChoice, computerChoice) {
-        // Capitalizes humanChoice if it is not already capitalized, as it will be used for displaying results.
-        humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
-    
-        const humanWonRound = (humanChoice === "Rock" && computerChoice === "Scissors") ||
-                              (humanChoice === "Paper" && computerChoice === "Rock") ||
-                              (humanChoice === "Scissors" && computerChoice === "Paper");
-    
-        if(humanWonRound) {
-            alert(`You win this round! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;
-        } else if(humanChoice === computerChoice) {
-            alert(`Draw! ${humanChoice} does not beat ${computerChoice}`);
+    if(playerScore === 5 || opponentScore === 5) {
+        buttons.style.visibility = "hidden";
+        if(playerScore === 5) {
+            gameText.innerText = "You won the game, congratulations!\nRefresh the page to play again."
         } else {
-            alert(`You lose this round! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
+            gameText.innerText = "You lost the game, better luck next time!\nRefresh the page to play again."
         }
     }
 }
